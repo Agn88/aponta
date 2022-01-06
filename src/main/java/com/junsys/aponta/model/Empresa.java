@@ -20,62 +20,93 @@ public class Empresa {
 	private String descricao;
 	private String email;
 	private String cnpj;
-	private String cidade;
-	private String estado;
-	private String pais;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Cidade cidade;
+	
 	private String cep;
 	
 
-	public Empresa(String nome, String fone, String descricao, String email, String cnpj, String cidade,
-			String estado, String pais, String cep) {
-		super();
+	public Empresa(String nome, String fone, String descricao, String email, String cnpj, Cidade cidade, String cep) {
 		this.nome = nome;
 		this.fone = fone;
 		this.descricao = descricao;
 		this.email = email;
 		this.cnpj = cnpj;
 		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
 		this.cep = cep;
 	}
 
-	
-	
-	public String getCidade() {
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getFone() {
+		return fone;
+	}
+
+
+	public void setFone(String fone) {
+		this.fone = fone;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+
+	public Cidade getCidade() {
 		return cidade;
 	}
 
 
-
-	public void setCidade(String cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-
-
-
-	public String getEstado() {
-		return estado;
-	}
-
-
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-
-
-	public String getPais() {
-		return pais;
-	}
-
-
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
 
 
 	public String getCep() {
@@ -83,71 +114,10 @@ public class Empresa {
 	}
 
 
-
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
-
-
-	public Empresa() {
-		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getFone() {
-		return fone;
-	}
-
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
 	
-
-	@Override
-	public String toString() {
-		return "Empresa [id=" + id + ", nome=" + nome + "]";
-	}
 	
 	
 }

@@ -36,9 +36,11 @@ public class User {
 	private String nome;
 	private String email;
 	private String fone;
-	private String cidade;
-	private String estado;
-	private String pais;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Cidade cidade;
+	
 	private String cep;
 
 
@@ -61,84 +63,17 @@ public class User {
 		roles.add(role);
 	}
 
-	public User(String username, String password, Role role, String nome, String email, String fone, String cidade,
-			String estado, String pais, String cep, Empresa empresa) {
+	public User(String username, String password, Role role, String nome, String email, String fone, Cidade cidade, String cep, Empresa empresa) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.email = email;
 		this.fone = fone;
 		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
 		this.cep = cep;
 		this.empresa = empresa;
 		// roles =new ArrayList<>();
 		roles.add(role);
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getFone() {
-		return fone;
-	}
-
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
 	}
 
 	public Long getId() {
@@ -181,6 +116,54 @@ public class User {
 		this.createdAt = createdAt;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFone() {
+		return fone;
+	}
+
+	public void setFone(String fone) {
+		this.fone = fone;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -188,4 +171,6 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	
 }

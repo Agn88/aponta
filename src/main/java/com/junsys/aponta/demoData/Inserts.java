@@ -6,12 +6,14 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.junsys.aponta.model.Cidade;
 import com.junsys.aponta.model.Empresa;
 import com.junsys.aponta.model.Role;
 import com.junsys.aponta.model.User;
 import com.junsys.aponta.repository.EmpresaRepository;
 import com.junsys.aponta.repository.RoleRepository;
 import com.junsys.aponta.repository.UserRepository;
+import com.junsys.aponta.service.CidadeService;
 
 
 
@@ -30,6 +32,9 @@ public class Inserts {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private CidadeService cidadeService;
+	
 	
 	
 	@EventListener
@@ -38,7 +43,11 @@ public class Inserts {
 			
 			System.out.println("Event: Saving demo data");
 			
-			Empresa junSys = new Empresa("JunSys Sistemas", "543547871", "Cliente final", "contato@junsys.com.br", "91.768.605/0001-82", "Capinzal", "SC", "Brasil", "89665-000");
+			Cidade capinzal = new Cidade();
+			capinzal = cidadeService.findById((long) 4472);
+		
+			
+			Empresa junSys = new Empresa("JunSys Sistemas", "543547871", "Cliente final", "contato@junsys.com.br", "91.768.605/0001-82", capinzal, "89665-000");
 			empresaRepository.save(junSys);		
 			
 			Role roleAdmin = new Role("ADMIN");
@@ -47,8 +56,8 @@ public class Inserts {
 			roleRepository.save(roleAdmin);
 			roleRepository.save(roleUser);
 
-			User userAgnaldo = new User("Agnaldo", passwordEncoder.encode("5544690"), roleAdmin, "Agnaldo Junior", "agnaldo88@gmail.com", "49988042847", "Capinzal", "SC", "Brasil", "89665-000", junSys);
-			User userUsuario = new User("Usuario", passwordEncoder.encode("1234"), roleUser, "Angelo Silva", "ang_sas@gmail.com", "49988778899", "Campos Novos", "SC", "Brasil", "89620-000", junSys);
+			User userAgnaldo = new User("Agnaldo", passwordEncoder.encode("5544690"), roleAdmin, "Agnaldo Junior", "agnaldo88@gmail.com", "49988042847", capinzal, "89665-000", junSys);
+			User userUsuario = new User("Usuario", passwordEncoder.encode("1234"), roleUser, "Angelo Silva", "ang_sas@gmail.com", "49988778899", capinzal, "89620-000", junSys);
 
 			userRepository.save(userAgnaldo);
 			userRepository.save(userUsuario);

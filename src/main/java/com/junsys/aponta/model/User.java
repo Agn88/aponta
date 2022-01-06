@@ -30,6 +30,9 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
+	private boolean disabled = false;
+	private LocalDateTime createdAt = LocalDateTime.now();
+	
 	private String nome;
 	private String email;
 	private String fone;
@@ -39,8 +42,10 @@ public class User {
 	private String cep;
 
 
-	private boolean disabled = false;
-	private LocalDateTime createdAt = LocalDateTime.now();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Empresa empresa;
+	
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -57,7 +62,7 @@ public class User {
 	}
 
 	public User(String username, String password, Role role, String nome, String email, String fone, String cidade,
-			String estado, String pais, String cep) {
+			String estado, String pais, String cep, Empresa empresa) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
@@ -67,6 +72,7 @@ public class User {
 		this.estado = estado;
 		this.pais = pais;
 		this.cep = cep;
+		this.empresa = empresa;
 		// roles =new ArrayList<>();
 		roles.add(role);
 	}
@@ -127,7 +133,13 @@ public class User {
 		this.cep = cep;
 	}
 
-	
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	public Long getId() {
 		return id;

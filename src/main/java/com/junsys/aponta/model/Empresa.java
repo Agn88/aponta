@@ -26,9 +26,9 @@ public class Empresa {
 	private Cidade cidade;
 	
 	private String cep;
-	
 
-	public Empresa(String nome, String fone, String descricao, String email, String cnpj, Cidade cidade, String cep) {
+	public Empresa(String nome, String fone, String descricao, String email, String cnpj, Cidade cidade,
+			String cep) {
 		this.nome = nome;
 		this.fone = fone;
 		this.descricao = descricao;
@@ -38,85 +38,73 @@ public class Empresa {
 		this.cep = cep;
 	}
 
+	public Empresa() {
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getFone() {
 		return fone;
 	}
 
-
 	public void setFone(String fone) {
 		this.fone = fone;
 	}
-
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getCnpj() {
 		return cnpj;
 	}
 
-
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
 
 	public Cidade getCidade() {
 		return cidade;
 	}
 
-
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-
 
 	public String getCep() {
 		return cep;
 	}
 
-
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
 	
 	
 	
